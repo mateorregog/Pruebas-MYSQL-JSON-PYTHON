@@ -13,10 +13,28 @@ try:
                                          database='db11mayo',
                                          user='root',
                                          password='1234')
-except:  
+except:
     print ("I am unable to connect to the database")
 
+## TODO: codigo quemado
+bicingJson = [
+    {
+        "id": 1,
+        "nombre": 1,
+        "base_experience": 1,
+        "height": 1,
+        "is_default": 1,
+        "orden": 1,
+        "weight": 1
+    }
+]
+
 cursor = conn.cursor()
-cursor.executemany("INSERT into pokemon35(id,nombre,base_experience,height,is_default,orden,weight) VALUES (%(id)s, %(name)s,%(base_experience)s,%(height)s,%(is_default)s,%(order)s,%(weight)s)",bicingJson['v2/pokemon/clefairy'])
+query = """
+    INSERT into pokemon35(id,nombre,base_experience,height,is_default,orden,weight) 
+    VALUES (%(id)s, %(name)s,%(base_experience)s,%(height)s,%(is_default)s,%(order)s,%(weight)s)
+"""
+
+cursor.executemany(query, bicingJson)
 conn.commit()
-cursor.close()  
+cursor.close()
